@@ -1,8 +1,10 @@
+using Microsoft.AspNet.FriendlyUrls;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls;
+
 
 namespace Admin
 {

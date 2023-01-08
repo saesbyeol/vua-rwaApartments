@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rwaLib.Dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,12 +12,23 @@ namespace Admin
 {
     public class Global : HttpApplication
     {
-      
-        void Application_Start(object sender, EventArgs e)
+
+        private readonly IRepo _repo;
+
+        public Global()
         {
-            // Code that runs on application startup
+            _repo = RepoFactory.GetRepo();
+        }
+
+        protected void Application_OnStart(object sender, EventArgs e)
+        {
+            Application["database"] = _repo;
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
         }
     }
 }
